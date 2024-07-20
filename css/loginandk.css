@@ -1,0 +1,147 @@
+/* login */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.login-container {
+    max-width: 350px;
+    height: 350px;
+    margin: 100px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 200px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.login-input:focus {
+    border-color: #3498db;
+}
+
+.login-button,
+.login-link {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    padding: 7px 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    margin: 5px;
+}
+.login-text {
+    margin-top: 15px;
+    text-align: center;
+}
+.login-info {
+    display: inline-block;
+    margin-right: 10px;
+    color: #333;
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-group {
+    position: relative;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.login-input {
+    padding-right: 30px; 
+}
+
+.login-input {
+    width: 300px;
+}
+
+.toggle-password {
+    cursor: pointer;
+    margin-right: 5px; 
+    margin-top: 10px;
+}
+/* register */
+.row1 {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    padding: 20px;
+    margin: 50px auto;
+}
+
+h4.title1 {
+    color: #333;
+    text-align: center;
+}
+
+.form-group1 {
+    margin-bottom: 15px;
+}
+
+.input1 {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.btn {
+    background-color: #d9534f;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; 
+}
+
+.btn:hover {
+    background-color: #c9302c;
+}
+
+/* Styles for the "Thoát" button */
+.btn-primary {
+    background-color: #5bc0de;
+}
+
+.btn-primary:hover {
+    background-color: #46b8da;
+}

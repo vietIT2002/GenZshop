@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    /* color: #333; */
+  }
+.wrapper1{
+    padding: 20px 8%;
+    width:100%;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    border-top: 0px;
+}
+.wrapper1 .title1{
+    
+    background: #3e4043;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 60px;
+    text-align: center;
+    border-bottom: 1px solid #313234;
+    border-radius: 5px 5px 0 0;
+}
+.wrapper1 .form1{
+    padding: 20px 15px;
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+    border-left:1px solid #313234;
+    border-right:1px solid #313234;
+}
+.wrapper1 .form1 .inbox1{
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+}
+.wrapper1 .form1 .user-inbox{
+    justify-content: flex-end;
+    margin: 13px 0;
+}
+.wrapper1 .form1 .inbox1 .icon{
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    background: #3a3e42;
+}
+.wrapper1 .form1 .inbox1 .msg-header{
+    max-width: 70%;
+    margin-left: 10px;
+}
+.form1 .inbox1 .msg-header p{
+    color: #fff;
+    background: #67696a;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 14px;
+    word-break: break-all;
+}
+.form1 .user-inbox .msg-header p{
+    color: #333;
+    background: #efefef;
+}
+.wrapper1 .typing-field{
+    display: flex;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #efefef;
+    border-radius: 0 0 5px 5px;
+    border-left:1px solid #313234;
+    border-right:1px solid #313234;
+    border-bottom:1px solid #313234;
+}
+.wrapper1 .typing-field .input-data{
+    height: 40px;
+    width: 98%;
+    position: relative;
+}
+.wrapper1 .typing-field .input-data input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: 1px solid transparent;
+    padding: 0 80px 0 15px;
+    border-radius: 3px;
+    font-size: 15px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+.typing-field .input-data input:focus{
+    border-color: rgba(0,123,255,0.8);
+}
+.input-data input::placeholder{
+    color: #999999;
+    transition: all 0.3s ease;
+}
+.input-data input:focus::placeholder{
+    color: #bfbfbf;
+}
+.wrapper1 .typing-field .input-data button{
+    position: absolute;
+    right: 1px;
+    /* top: 50%; */
+    height: 40px;
+    width: 105px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    /* outline: none;
+    opacity: 0;
+    pointer-events: none; */
+    border-radius: 3px;
+    background: #67696a;
+    border: 1px solid #67696a;
+    /* transform1: translateY(-50%); */
+    transition: all 0.3s ease;
+}
+.wrapper1 .typing-field .input-data input:valid ~ button{
+opacity: 1;
+    pointer-events: auto;
+}
+.typing-field .input-data button:hover{
+    background: #67696a;
+}

@@ -1,0 +1,25 @@
+#content1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-text {
+    border-bottom: 2px dashed black;
+    padding-bottom: 5px; 
+    text-align: center;
+}
+
+.sub-heading {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+} 
+
+.noidung{
+    text-align: justify;
+    font-weight: 500;
+}
