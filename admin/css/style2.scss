@@ -1,0 +1,48 @@
+#body {
+    display: flex;
+    #leftmenu {
+        width: 20%;
+        background-color:   #F9D5CA;;
+        border:  none;
+        height: 100vh;
+        .input-select2 {
+            padding: 0px;
+            li.item {
+                a {
+                    padding: 20px;
+                    display: inline-block;
+                    width: 100%;
+                    font-size: 18px;
+                    transition: 0.3s;
+                    
+                }
+                &:hover {
+                    background-color:  #F9D5CA;;
+                    cursor: pointer;
+                    a {
+                        font-weight: bold;
+                        text-decoration: none;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+    #content {
+        width: 80%;
+        .main-content {
+            width: 100%;
+            margin: 0;
+            h1 {
+                padding: 15px;
+                border-radius: none;
+                background-color: #2980b9;
+                margin: 0px;
+                color: white;
+            }
+        }
+    
+    }
+}
+
+

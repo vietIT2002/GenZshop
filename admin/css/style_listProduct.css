@@ -1,0 +1,40 @@
+td.d-flex {
+  display: flex;
+  justify-content: center;
+}
+
+img.wh100 {
+  width: 100px;
+  height: 100px;
+}
+
+td.pst-rela {
+  position: relative;
+}
+td.pst-rela div.pts-abl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bg {
+  background-color: rgb(180, 142, 130);
+  color: white;
+  text-align: center;
+}
+.bg i {
+  color: white;
+}
+
+.pdl-5px {
+  padding-left: 8px;
+}
+
+.rotate-per {
+  transform: rotate(180deg);
+}
+
+.btnLuu {
+  padding: 8px 15px;
+}/*# sourceMappingURL=style_listProduct.css.map */
