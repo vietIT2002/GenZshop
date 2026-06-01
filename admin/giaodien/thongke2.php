@@ -34,7 +34,7 @@
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Tổng tiền hóa đơn theo khách hàng từ ngày 2021-05-01 đến 2021-05-31
     $strSQL= "SELECT id_khachhang,sum(tong_tien) FROM hoadon WHERE ngay_tao BETWEEN '2023-12-12' AND '2024-04-09' GROUP BY id_khachhang";
-    $tong = executeQuery("localhost","root","","bannuocdb",$strSQL);
+    $tong = executeQuery("localhost","root","","GenZshopdb",$strSQL);
     foreach($tong as $item){
         $array[]=$item;
     }
@@ -64,7 +64,7 @@
             $strSQL2= "SELECT sanpham.id_the_loai as id, SUM(cthoadon.so_luong*sanpham.don_gia ) AS tong FROM cthoadon, hoadon,sanpham WHERE month(hoadon.ngay_tao) = '$month2'  and hoadon.id=cthoadon.id_hoadon AND cthoadon.id_sanpham=sanpham.id GROUP by sanpham.id_the_loai";
         }
     }
-    $theloai = executeQuery("localhost","root","","bannuocdb",$strSQL2);
+    $theloai = executeQuery("localhost","root","","GenZshopdb",$strSQL2);
     $m=mysqli_fetch_array($theloai);
     if($m!=NULL){
         foreach($theloai as $item2){
@@ -83,7 +83,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Thống kê tình hình kinh doanh trong một khoảng thời gian của các sản phẩm thuộc một loại / tất cả sản phẩm.
     $strSQL= "SELECT sanpham.id, SUM(cthoadon.so_luong*sanpham.don_gia) as tongtien FROM hoadon,cthoadon,sanpham WHERE hoadon.ngay_tao BETWEEN '2023-12-12' AND '2024-05-09' AND hoadon.id=cthoadon.id_hoadon and cthoadon.id_sanpham=sanpham.id GROUP by sanpham.id";
-    $tinhhinhkinhdoanh = executeQuery("localhost","root","","bannuocdb",$strSQL);
+    $tinhhinhkinhdoanh = executeQuery("localhost","root","","GenZshopdb",$strSQL);
     foreach($tinhhinhkinhdoanh as $item3){
         $array3[]=$item3;
     }
@@ -118,7 +118,7 @@
         ) as tong
     WHERE maxtong.max=tong.tong and maxtong.month= tong.month";
 
-    $sanphambanchay = executeQuery("localhost","root","","bannuocdb",$strSQL);
+    $sanphambanchay = executeQuery("localhost","root","","GenZshopdb",$strSQL);
     
     foreach($sanphambanchay as $item4){
         $array4[]=$item4;

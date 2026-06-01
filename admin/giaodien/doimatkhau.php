@@ -28,7 +28,7 @@
 </head>
 <body>
 <?php
-    $con = mysqli_connect("localhost", "root", "", "bannuocdb");
+    $con = mysqli_connect("localhost", "root", "", "GenZshopdb");
     $result = mysqli_query($con, "SELECT * FROM `taikhoang` WHERE `username` = '" . $_SESSION['user']."'");
     $taikhoang = $result->fetch_assoc();
 ?>

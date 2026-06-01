@@ -3,7 +3,7 @@
 session_start();
 $user = $_POST['username'];
 $pass = $_POST['password'];
-$conn = mysqli_connect("localhost", "root", "", "bannuocdb");
+$conn = mysqli_connect("localhost", "root", "", "GenZshopdb");
 $sql = "SELECT * FROM `taikhoang` WHERE username='$user' AND pass='$pass'";
 echo $sql;
 $result = mysqli_query($conn, $sql);
