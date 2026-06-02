@@ -74,22 +74,26 @@
                                 
                                 foreach ($listDetailBill as $chitietHD) {
                                     $detailPro = executeSingleResult('SELECT hinh_anh, ten_sp, don_gia FROM sanpham WHERE id=' . $chitietHD['id_sanpham']);
+                                    if (!$detailPro) {
+                                        continue;
+                                    }
                                     $subtotal = $chitietHD['so_luong'] * $detailPro['don_gia'];
-                                
-                                    // Áp dụng giảm giá nếu tổng tiền vượt quá 1000000
-                                    $discount = ($tongtien > 1000000) ? 0 : 15000;
-                                
+
                                     echo '<tr height=100px>
                                             <td width=60px><img src="./img/' . $detailPro['hinh_anh'] . '" width="100%"></td>
                                             <td>' . $detailPro['ten_sp'] . '</td>
                                             <td>' . currency_format($detailPro['don_gia']) . '</td>
                                             <td style="text-align:center;">' . $chitietHD['so_luong'] . '</td>
-                                            <td align=right>' . currency_format($subtotal + $discount) . '</td>
+                                            <td align=right>' . currency_format($subtotal) . '</td>
                                           </tr>';
                                 
                                     // Cập nhật tổng tiền
                                     $tongtien += $subtotal;
                                 }
+                                if (empty($listDetailBill)) {
+                                    echo '<tr><td colspan="5" style="padding:20px 0; text-align:center;">Không có thông tin sản phẩm.</td></tr>';
+                                }
+                                $shippingFee = ($tongtien > 0 && $tongtien <= 1000000) ? 15000 : 0;
                                 ?>
                                 </table><br><br>
                                 <table width=100% style="background-color:#f2f1f194;">
@@ -99,11 +103,11 @@
                                     </tr>
                                     <tr>
                                         <td align=right><strong>Phí vận chuyển</strong></td>
-                                        <td align=right><?= currency_format($discount) ?></td>
+                                        <td align=right><?= currency_format($shippingFee) ?></td>
                                     </tr>
                                     <tr>
                                         <td align=right><strong>Tổng cộng</strong></td>
-                                        <td align=right style="color:red;"><strong><?= currency_format($subtotal + $discount) ?></strong></td>
+                                        <td align=right style="color:red;"><strong><?= currency_format($tongtien + $shippingFee) ?></strong></td>
                                     </tr>
                                 </table>
                                 

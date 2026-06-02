@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/jquery-3.6.1.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -225,7 +222,7 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
-				<div class="row">
+				<div class="row product-detail-row">
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">

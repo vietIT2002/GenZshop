@@ -1,25 +1,64 @@
-
 <?php
 session_start();
-$user = $_POST['username'];
-$pass = $_POST['password'];
-$conn = mysqli_connect("localhost", "root", "", "GenZshopdb");
-$sql = "SELECT * FROM `taikhoang` WHERE username='$user' AND pass='$pass'";
-echo $sql;
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-$sql2 = "SELECT * FROM `nhanvien` WHERE ten_dangnhap='".$row['username']."'";
-$result2 = mysqli_query($conn, $sql2);
-$row2 = mysqli_fetch_array($result2);
-if ($row['trang_thai'] == '1')
-    header("location:index.php?dn=khoa");
-else
-    if (mysqli_num_rows($result) > 0) {
-    $_SESSION['nguoidung'] = $row['fullname'];
-    $_SESSION['quyen'] = $row['id_quyen'];
-    $_SESSION['user'] = $row['username'];
-    $_SESSION['idnhanvien'] = $row2['id'];
-    $_SESSION['tennhanvien'] = $row2['ten_nv'];
-    header("location:admin.php?dn=true");
-} else header("location:index.php?dn=false");
-?>
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: index.php');
+    exit;
+}
+
+$user = trim($_POST['username'] ?? '');
+$pass = $_POST['password'] ?? '';
+
+if ($user === '' || $pass === '') {
+    header('Location: index.php?dn=false');
+    exit;
+}
+
+$conn = mysqli_connect('localhost', 'root', '', 'GenZshopdb');
+if (!$conn) {
+    header('Location: index.php?dn=false');
+    exit;
+}
+mysqli_set_charset($conn, 'utf8mb4');
+
+$statement = mysqli_prepare(
+    $conn,
+    'SELECT trang_thai, id_quyen, username, fullname
+     FROM taikhoang
+     WHERE username = ? AND pass = ?'
+);
+mysqli_stmt_bind_param($statement, 'ss', $user, $pass);
+mysqli_stmt_execute($statement);
+$result = mysqli_stmt_get_result($statement);
+$account = mysqli_fetch_assoc($result);
+
+if (!$account) {
+    mysqli_close($conn);
+    header('Location: index.php?dn=false');
+    exit;
+}
+
+if ((int) $account['trang_thai'] === 1) {
+    mysqli_close($conn);
+    header('Location: index.php?dn=khoa');
+    exit;
+}
+
+$employeeStatement = mysqli_prepare(
+    $conn,
+    'SELECT id, ten_nv FROM nhanvien WHERE ten_dangnhap = ? LIMIT 1'
+);
+mysqli_stmt_bind_param($employeeStatement, 's', $account['username']);
+mysqli_stmt_execute($employeeStatement);
+$employeeResult = mysqli_stmt_get_result($employeeStatement);
+$employee = mysqli_fetch_assoc($employeeResult);
+
+$_SESSION['nguoidung'] = $account['fullname'];
+$_SESSION['quyen'] = $account['id_quyen'];
+$_SESSION['user'] = $account['username'];
+$_SESSION['idnhanvien'] = $employee['id'] ?? 0;
+$_SESSION['tennhanvien'] = $employee['ten_nv'] ?? $account['fullname'];
+
+mysqli_close($conn);
+header('Location: admin.php?dn=true');
+exit;

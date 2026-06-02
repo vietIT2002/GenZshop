@@ -169,9 +169,79 @@
  
 
   .container-blog{
-    font-family: 'Tohoma', sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
     text-align: justify;
     margin-left: 150px;
     font-size: 16px;
 
   }
+
+@media only screen and (max-width: 991px) {
+  .title_content {
+    margin-top: 28px;
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+
+  .content,
+  section {
+    width: 100%;
+    height: auto;
+    float: none;
+  }
+
+  aside,
+  .aside {
+    position: static;
+    width: 100%;
+    height: auto;
+    float: none;
+    margin: 20px 0;
+    padding: 0;
+  }
+
+  .div,
+  .div1,
+  .div2,
+  .div3,
+  .div4,
+  .div5 {
+    height: auto;
+    min-height: 0;
+    margin-bottom: 28px;
+    padding: 0;
+  }
+
+  .div2_blog,
+  .container-blog,
+  .content1 > p {
+    margin-left: 0;
+  }
+
+  .content1 > p {
+    margin-top: 24px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .title_content {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  .image,
+  .image1,
+  .describe {
+    width: 100%;
+    height: auto;
+    float: none;
+    display: block;
+    margin: 0 0 14px;
+    padding: 0;
+  }
+
+  .imgblog {
+    height: auto;
+    padding-right: 0;
+  }
+}

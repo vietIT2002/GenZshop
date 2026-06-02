@@ -3,6 +3,7 @@
     session_start();
     require_once('db/dbhelper.php');
     require_once('common/utility.php'); 
+    $info=null;
     if(isset($_SESSION['ten_dangnhap'])){
 		$ten_dangnhap=$_SESSION['ten_dangnhap'];
 		$sql='select * from khachhang where ten_dangnhap="'.$ten_dangnhap.'"';
@@ -14,6 +15,11 @@
     $title='Trang Chủ';
     if(isset($_GET['act'])){
         $act=$_GET['act'];
+    }
+    $protectedActs=['my_bill', 'my_account', 'bill_detail'];
+    if(in_array($act, $protectedActs, true) && (!isset($_SESSION['ten_dangnhap']) || !$info)){
+        header('Location: index.php?act=login');
+        exit;
     }
     if(isset($_GET['id'])){
         $id=$_GET['id'];

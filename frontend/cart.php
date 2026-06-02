@@ -37,7 +37,7 @@
 							<h3 class="title">Giỏ Hàng</h3>
 						</div>
 						<div class="order-summary">
-							<div class="order-products">
+							<div class="order-products cart-table-scroll">
 								<?php
 								echo '<table class="row" style="width:100%;vertical-align:middle;">
 								<tr>

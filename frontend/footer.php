@@ -6,7 +6,7 @@
 
 <style>
 	#footer {
-    font-family: 'Tohoma', sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
     background-color: #333333;
     color: #ffffff;
     padding: 20px 0;

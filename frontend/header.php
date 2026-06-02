@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-<link type="text/css" rel="stylesheet" href="css/header12.css"/>
+<link type="text/css" rel="stylesheet" href="css/header12.css?v=20260602-2"/>
+<link type="text/css" rel="stylesheet" href="css/responsive.css?v=20260602-9"/>
 <style>
 </style>
 <!-- TOP HEADER -->
@@ -49,7 +50,7 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form method="get" >
-									<select class="input-select" onchange="location = this.value;" style="border-radius:0">
+									<select class="input-select" onchange="location = this.value;">
 										<option value="0">Danh Mục Sản Phẩm</option>
 										<?php
 										$sql='select id, ten_tl from theloai';
@@ -60,7 +61,7 @@
 										?>
 									</select>
 									<input class="input" name="search" placeholder="Tìm sản phẩm..." required oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')" oninput="setCustomValidity('')"/>
-									<button class="search-btn" style="border-radius:0;">
+									<button class="search-btn" type="submit" aria-label="Tìm kiếm">
 										<i class="fa-solid fa-magnifying-glass" style="color: #333;"></i>
 									</button>
 								</form>
@@ -182,16 +183,17 @@
 						
 						
 						<?php
-							if(isset($_GET['id'])) $id=$_GET['id'];
+							$activeCategoryId=$id;
 							if($act=='product'){
 								$sql='select id_the_loai from sanpham where id='.$id;
-								$id=executeSingleResult($sql)['id_the_loai'];
-								
+								$productCategory=executeSingleResult($sql);
+								$activeCategoryId=$productCategory['id_the_loai'] ?? 0;
+
 							}
 							$sql='select id, ten_tl from theloai';
 							$list=executeResult($sql);
 										foreach($list as $item){
-											if($item['id']==$id){
+											if($item['id']==$activeCategoryId){
 												echo '<li class="active"><a href="?act=category&id='.$item['id'].'">'.$item['ten_tl'].'</a></li>';
 											}else echo '<li><a href="?act=category&id='.$item['id'].'">'.$item['ten_tl'].'</a></li>';
 											

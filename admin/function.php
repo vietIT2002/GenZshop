@@ -175,6 +175,7 @@ function execute($sql){
     //save data into database
     //open connection to database
     $con=mysqli_connect(HOST,USERNAME,PASSWORD,DATABASE);
+    mysqli_set_charset($con, 'utf8mb4');
     //insert, update, delete
     mysqli_query($con,$sql);
     //close connectino
@@ -184,6 +185,7 @@ function executeResult($sql){
     //save data into table
     //open connection  to database
     $con=mysqli_connect(HOST,USERNAME,PASSWORD,DATABASE);
+    mysqli_set_charset($con, 'utf8mb4');
     //insert, update, delete
     $result=mysqli_query($con,$sql);
     $data =[];
@@ -201,6 +203,7 @@ function executeSingleResult($sql){
     //save data into table
     //open connection  to database
     $con=mysqli_connect(HOST,USERNAME,PASSWORD,DATABASE);
+    mysqli_set_charset($con, 'utf8mb4');
     //insert, update, delete
     $result=mysqli_query($con,$sql);
     $row=null;
