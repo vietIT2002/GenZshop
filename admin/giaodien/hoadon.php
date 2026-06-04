@@ -1,42 +1,38 @@
 <?php
     include_once("./connect_db.php");
     if (!empty($_SESSION['nguoidung'])) {
-        $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 10;
-        $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+        $item_per_page = (!empty($_GET['per_page'])) ? max(1, (int)$_GET['per_page']) : 10;
+        $current_page = (!empty($_GET['page'])) ? max(1, (int)$_GET['page']) : 1;
         $offset = ($current_page - 1) * $item_per_page;
-        if(isset($_POST['timebd'])&&isset($_POST['timekt']))
-        {if(($_POST['timebd']=='')&&($_POST['timekt']==''))
-        $totalRecords = mysqli_query($con, "SELECT * FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` )");
-        if(($_POST['timebd']=='')&&(!empty($_POST['timekt'])))
-        $totalRecords = mysqli_query($con, "SELECT * FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) WHERE `hoadon`.`ngay_tao` <= DATE_ADD('".$_POST['timekt']."',INTERVAL '1' DAY)");
-        if(($_POST['timekt']=='')&&(!empty($_POST['timebd'])))
-        $totalRecords = mysqli_query($con, "SELECT * FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) WHERE `hoadon`.`ngay_tao` >= '".$_POST['timebd']."'");
-        if(!empty($_POST['timebd'])&&(!empty($_POST['timekt'])))
-        $totalRecords = mysqli_query($con, "SELECT * FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) WHERE `hoadon`.`ngay_tao` <= DATE_ADD('".$_POST['timekt']."',INTERVAL '1' DAY) AND `hoadon`.`ngay_tao` >= '".$_POST['timebd']."'");
+
+        $where = [];
+        if (isset($_POST['timebd']) && trim($_POST['timebd']) !== '') {
+            $timebd = mysqli_real_escape_string($con, trim($_POST['timebd']));
+            $where[] = "`hoadon`.`ngay_tao` >= '" . $timebd . "'";
         }
-        else $totalRecords = mysqli_query($con, "SELECT * FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` )");
-        $totalRecords = $totalRecords->num_rows;
+        if (isset($_POST['timekt']) && trim($_POST['timekt']) !== '') {
+            $timekt = mysqli_real_escape_string($con, trim($_POST['timekt']));
+            $where[] = "`hoadon`.`ngay_tao` <= DATE_ADD('" . $timekt . "', INTERVAL 1 DAY)";
+        }
+        $whereSql = !empty($where) ? ' WHERE ' . implode(' AND ', $where) : '';
+
+        $fromSql = " FROM hoadon
+            LEFT JOIN nhanvien ON `id_nhanvien` = `nhanvien`.`id`
+            LEFT JOIN khachhang ON `id_khachhang` = `khachhang`.`id`";
+
+        $totalRecordsResult = mysqli_query($con, "SELECT COUNT(*) AS total" . $fromSql . $whereSql);
+        $totalRecordsRow = mysqli_fetch_assoc($totalRecordsResult);
+        $totalRecords = (int)($totalRecordsRow['total'] ?? 0);
         $totalPages = ceil($totalRecords / $item_per_page);
-        if(isset($_POST['timebd'])&&isset($_POST['timekt']))
-        {if(($_POST['timebd']=='')&&($_POST['timekt']==''))
-        $hoadon = mysqli_query($con, "SELECT `hoadon`.`id` AS `idhoadon`, `id_khachhang`,`ten_kh`, `tong_tien`, `hoadon`.`ngay_tao`, `id_nhanvien`,`trang_thai`,`ten_nv`,`nhanvien`.`id` FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) ORDER BY `hoadon`.`ngay_tao` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
-        if(($_POST['timebd']=='')&&(!empty($_POST['timekt'])))
-        $hoadon = mysqli_query($con, "SELECT `hoadon`.`id` AS `idhoadon`, `id_khachhang`,`ten_kh`, `tong_tien`, `hoadon`.`ngay_tao`, `id_nhanvien`,`trang_thai`,`ten_nv`,`nhanvien`.`id` FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) WHERE `hoadon`.`ngay_tao` <= DATE_ADD('".$_POST['timekt']."',INTERVAL '1' DAY) ORDER BY `hoadon`.`ngay_tao` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
-        if(($_POST['timekt']=='')&&(!empty($_POST['timebd'])))
-        $hoadon = mysqli_query($con, "SELECT `hoadon`.`id` AS `idhoadon`, `id_khachhang`,`ten_kh`,`tong_tien`, `hoadon`.`ngay_tao`, `id_nhanvien`,`trang_thai`,`ten_nv`,`nhanvien`.`id` FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) WHERE `hoadon`.`ngay_tao` >= '".$_POST['timebd']."' ORDER BY `hoadon`.`ngay_tao` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
-        if(!empty($_POST['timebd'])&&(!empty($_POST['timekt'])))
-        $hoadon = mysqli_query($con, "SELECT `hoadon`.`id` AS `idhoadon`, `id_khachhang`,`ten_kh`, `tong_tien`, `hoadon`.`ngay_tao`, `id_nhanvien`,`trang_thai`,`ten_nv`,`nhanvien`.`id` FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) WHERE `hoadon`.`ngay_tao` <= DATE_ADD('".$_POST['timekt']."',INTERVAL '1' DAY) AND `hoadon`.`ngay_tao` >= '".$_POST['timebd']."' ORDER BY `hoadon`.`ngay_tao` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
-        }
-        // else $hoadon = mysqli_query($con, "SELECT `hoadon`.`id` AS `idhoadon`, `id_khachhang`, `tong_tien`, `hoadon`.`ngay_tao`, `id_nhanvien`,`trang_thai`,`ten_nv`,`nhanvien`.`id` FROM (hoadon LEFT JOIN nhanvien ON`id_nhanvien`=`nhanvien`.`id` ) ORDER BY `hoadon`.`ngay_tao` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
-        $hoadon = mysqli_query($con, "SELECT `hoadon`.`id` AS `idhoadon`, `id_khachhang`, `khachhang`.`ten_kh` AS `ten_kh`, `tong_tien`, `hoadon`.`ngay_tao`, `id_nhanvien`,`trang_thai`,`ten_nv`,`nhanvien`.`id` 
-                        FROM (hoadon 
-                        LEFT JOIN nhanvien ON `id_nhanvien` = `nhanvien`.`id` 
-                        LEFT JOIN khachhang ON `id_khachhang` = `khachhang`.`id`) 
-                        ORDER BY `hoadon`.`ngay_tao` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
-        }
-        mysqli_close($con);
-    ?>
-<!DOCTYPE html>
+
+        $hoadon = mysqli_query($con, "SELECT `hoadon`.`id` AS `idhoadon`, `id_khachhang`,
+            `khachhang`.`ten_kh` AS `ten_kh`, `tong_tien`, `hoadon`.`ngay_tao`,
+            `id_nhanvien`, `trang_thai`, `ten_nv`, `nhanvien`.`id` AS `idnv`" .
+            $fromSql . $whereSql .
+            " ORDER BY `hoadon`.`ngay_tao` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
+    }
+    mysqli_close($con);
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

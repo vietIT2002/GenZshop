@@ -1,5 +1,7 @@
 <?php 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if(isset($_GET['logout']))
 if($_GET['logout']=='yes'){
     if(isset($_SESSION['nguoidung']))
@@ -63,7 +65,7 @@ unset($_SESSION['cart']);
         }   
         
         .loginnn form {
-            width: 450px;
+            width: min(100%, 450px);
             position: relative;
             padding: 60px 20px;
         }
@@ -132,7 +134,11 @@ unset($_SESSION['cart']);
    
         .login-link {
             display: inline-block;
-            padding: 10px 200px;
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            padding: 10px 16px;
+            text-align: center;
             background-color: #3498db; 
             color: #ffffff; 
             text-decoration: none;
@@ -140,6 +146,53 @@ unset($_SESSION['cart']);
             font-weight: bold;
             border-radius: 5px; 
             transition: background-color 0.3s ease; 
+        }
+
+        /* GenZShop audit fixes: admin login responsive */
+        .loginnn {
+            flex: 1 1 420px;
+            min-width: 0;
+        }
+
+        .contentt {
+            flex: 1 1 320px;
+            min-width: 0;
+        }
+
+        .contentt img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .loginnn form,
+        .loginnn .inputt,
+        .loginnn .buttonnn,
+        .loginnn .inputt .input11 {
+            max-width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .homeee {
+                width: calc(100% - 32px);
+                height: auto;
+                min-height: 0;
+                flex-direction: column;
+                position: static;
+                transform: none;
+                margin: 32px auto;
+            }
+
+            .contentt {
+                width: 100%;
+                padding: 24px 20px 0;
+                margin-right: 0;
+            }
+
+            .loginnn form {
+                width: 100%;
+                padding: 32px 20px;
+            }
         }
     </style>
 </head>

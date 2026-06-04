@@ -93,7 +93,7 @@ CREATE TABLE `danhmuc` (
   `id` int(15) UNSIGNED NOT NULL,
   `icon_dm` varchar(255) NOT NULL,
   `ten_danhmuc` varchar(191) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `danhmuc`
@@ -244,8 +244,8 @@ CREATE TABLE `hoadon` (
   `tong_tien` int(11) NOT NULL,
   `ngay_tao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_nhanvien` int(10) DEFAULT NULL,
-  `trang_thai` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `trang_thai` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `hoadon`
@@ -280,7 +280,7 @@ CREATE TABLE `khachhang` (
   `ngay_sua` timestamp NOT NULL DEFAULT current_timestamp(),
   `tong_tien_muahang` int(11) NOT NULL,
   `trangthai` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `khachhang`
@@ -334,7 +334,7 @@ INSERT INTO `lien_he` (`id_lienhe`, `ho_ten`, `sdt`, `email_ss`, `tieu_de`, `noi
 CREATE TABLE `nhanvien` (
   `id` int(10) UNSIGNED NOT NULL,
   `ten_nv` varchar(191) NOT NULL,
-  `chuc_vu` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `chuc_vu` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ten_dangnhap` varchar(191) NOT NULL,
   `mat_khau` varchar(191) NOT NULL,
   `phone` varchar(15) NOT NULL,
@@ -342,7 +342,7 @@ CREATE TABLE `nhanvien` (
   `email` varchar(191) NOT NULL,
   `ngay_tao` timestamp NOT NULL DEFAULT current_timestamp(),
   `ngay_sua` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nhanvien`
@@ -372,7 +372,7 @@ CREATE TABLE `phieunhap` (
   `sdt` int(11) NOT NULL,
   `diachi` varchar(50) NOT NULL,
   `ghichu` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `phieunhap`
@@ -390,7 +390,7 @@ INSERT INTO `phieunhap` (`id`, `id_nv`, `tong_tien`, `ngay_tao`, `nguoi_nhan`, `
 CREATE TABLE `quyen` (
   `id` int(10) UNSIGNED NOT NULL,
   `ten_quyen` varchar(191) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `quyen`
@@ -413,7 +413,7 @@ INSERT INTO `quyen` (`id`, `ten_quyen`) VALUES
 CREATE TABLE `quyendahmuc` (
   `id_quyen` int(10) UNSIGNED NOT NULL,
   `id_danhmuc` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `quyendahmuc`
@@ -474,8 +474,8 @@ CREATE TABLE `sanpham` (
   `ngay_sua` timestamp NOT NULL DEFAULT current_timestamp(),
   `trangthai` tinyint(1) NOT NULL,
   `gia_goc` int(11) NOT NULL,
-  `NoiDungChiTiet` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `NoiDungChiTiet` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sanpham`
@@ -521,7 +521,7 @@ CREATE TABLE `taikhoang` (
   `username` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
   `fullname` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `taikhoang`
@@ -546,7 +546,7 @@ CREATE TABLE `theloai` (
   `tong_sp` int(11) NOT NULL,
   `ngay_tao` timestamp NOT NULL DEFAULT current_timestamp(),
   `ngay_sua` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `theloai`

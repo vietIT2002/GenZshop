@@ -184,6 +184,7 @@
 </style>
 <!-- Lấy tên thể loại khi biết id sản phẩm -->
 <?php
+    $id = (int) $id;
 	$sql='select ten_sp, ten_tl, theloai.id as id_tl from sanpham, theloai where sanpham.id='.$id.' and theloai.id=sanpham.id_the_loai';
 	$listcate_pro=executeSingleResult($sql);
 ?>
@@ -193,6 +194,10 @@
 <?php
 	$sql='select * from sanpham where id='.$id;
 	$detailproduct=executeSingleResult($sql);
+    if (!$detailproduct || !$listcate_pro) {
+        echo '<div class="section"><div class="container"><div class="alert alert-warning">Không tìm thấy sản phẩm.</div></div></div>';
+        return;
+    }
 ?>
 <!-- /Lấy thông tin chi tiết của sản phẩm -->
 
@@ -458,7 +463,7 @@
 									<img src="./img/'.$item['hinh_anh'].'" alt="" style="height:250px" onclick="location=\'index.php?act=product&id='.$item['id'].'\'">
 									<div class="product-label">
 										
-										<span class="new">NEW</span>
+										'.(is_new_product($item['ngay_tao']) ? '<span class="new">NEW</span>' : '').'
 									</div>
 								</div>
 								<div class="product-body">

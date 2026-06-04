@@ -1,7 +1,7 @@
 <?php
 // Kết nối cơ sở dữ liệu
 $conn = mysqli_connect('localhost', 'root', '', 'GenZshopdb') or die ('Lỗi kết nối');
-mysqli_set_charset($conn, "utf8");
+mysqli_set_charset($conn, "utf8mb4");
 
 // Dùng isset để kiểm tra Form
 if(isset($_POST['lien_he'])){
@@ -43,11 +43,7 @@ if(isset($_POST['lien_he'])){
         echo '<script language="javascript">alert("Vui lòng nhập nội dung!"); window.location="lienhe.php";</script>';
         die();
     }
-
-    // Thực thi câu truy vấn
-    $result = mysqli_query($conn, $sql);
-   
-        // Check if the address is empty
+// Check if the address is empty
         if (empty($noidung)) {
             echo '<script language="javascript">alert("Vui lòng nhập nội dung!"); window.location="lienhe.php";</script>';
             die();

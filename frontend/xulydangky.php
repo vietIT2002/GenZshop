@@ -1,7 +1,7 @@
 <?php
 // Kết nối cơ sở dữ liệu
 $conn = mysqli_connect('localhost', 'root', '', 'GenZshopdb') or die ('Lỗi kết nối');
-mysqli_set_charset($conn, "utf8");
+mysqli_set_charset($conn, "utf8mb4");
 
 // Dùng isset để kiểm tra Form
 if(isset($_POST['dangky'])){

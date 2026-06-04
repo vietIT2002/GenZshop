@@ -47,9 +47,10 @@
         $title='Danh Mục Sản Phẩm';
     }
     if($act=='product'){
+        $id=(int)$id;
         $sql='select ten_sp from sanpham where id='.$id;
         $pro=executeSingleResult($sql);
-        $title=$pro['ten_sp'];
+        $title=$pro ? $pro['ten_sp'] : 'Không tìm thấy sản phẩm';
     }
     if($act=='cart'){
         $title='Giỏ Hàng';

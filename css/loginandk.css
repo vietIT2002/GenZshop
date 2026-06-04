@@ -145,3 +145,66 @@ h4.title1 {
 .btn-primary:hover {
     background-color: #46b8da;
 }
+
+/* GenZShop audit fixes: auth forms */
+.login-container {
+  width: min(100% - 32px, 380px);
+  height: auto;
+  min-height: 0;
+  margin: 64px auto;
+}
+
+.login-form,
+.row1 form {
+  width: 100%;
+}
+
+.login-input,
+.input1,
+.row1 input[type="text"],
+.row1 input[type="email"],
+.row1 input[type="password"] {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.centered,
+.auth-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.login-button,
+.login-link,
+.auth-actions .btn {
+  flex: 1 1 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.login-error {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #f3b9c0;
+  border-radius: 6px;
+  background: #fff5f6;
+  color: #b00020;
+  text-align: center;
+  line-height: 1.4;
+}
+
+@media (max-width: 420px) {
+  .centered,
+  .auth-actions {
+    flex-wrap: wrap;
+  }
+
+  .login-button,
+  .login-link,
+  .auth-actions .btn {
+    flex-basis: 100%;
+  }
+}

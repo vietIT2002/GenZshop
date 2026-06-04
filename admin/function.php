@@ -117,7 +117,9 @@ function loginFromSocialCallBack($socialUser) {
     if ($result->num_rows > 0) {
         $user = mysqli_fetch_assoc($result);
         if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
         }
         $_SESSION['current_user'] = $user;
         header('Location: ./login.php');

@@ -57,7 +57,7 @@
 												<tr>
 													<td width=60px>
 														
-														<img src="./img/'.$value['img'].'" width="100%">
+														<img class="cart-product-img" src="./img/'.$value['img'].'" alt="'.$value['name'].'">
 														
 													</td>
 													<td width=40%>'.$value['name'].'</td>
@@ -74,7 +74,7 @@
 													</td>
 													<td width=10% align=right>
 														
-														<button class="delete" onclick="addCart('.$key.',-1);location.reload();"><i class="fa fa-close fa-xs"></i></button>
+														<button class="delete" onclick="addCart('.$key.',-1);location.reload();" aria-label="Xóa sản phẩm"><i class="fa-solid fa-trash"></i></button>
 													</td>
 												</tr>';
 											

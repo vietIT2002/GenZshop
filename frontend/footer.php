@@ -130,7 +130,7 @@
             </div><br>
             <div class="logo-image">
                 <a href="#">
-                    <img src="./img/GENZSHOP.jpg" alt="" style="height: 150px; width: 100%">
+                    <img class="footer-logo-img" src="./img/GENZSHOP.jpg" alt="GenZShop">
                 </a>
             </div>
         </div>

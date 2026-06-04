@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <html lang="en">
 
 <head>
@@ -33,7 +34,15 @@
     <?php
     include_once('function.php');
     include_once('connect_db.php');
-    
+    if (!function_exists('admin_db_connect')) {
+        function admin_db_connect() {
+            $connection = mysqli_connect("localhost", "root", "", "GenZshopdb");
+            if ($connection) {
+                mysqli_set_charset($connection, 'utf8mb4');
+            }
+            return $connection;
+        }
+    }    
     if (isset($_POST['btnadd'])) {
         if (isset($_POST['id']))
             if ($_POST['id'] != '') {
@@ -49,7 +58,7 @@
                                             if ($_POST['idtl'] != '') {
                                                 if (isset($_POST['content']))
                                                     if ($_POST['content'] != '') {
-                                                    $conn = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                                                    $conn = admin_db_connect();
                                                     $namei = $_POST['name'];
                                                     $don_gia = $_POST['don_gia'];
                                                     $gia_goc = $_POST['gia_goc'];
@@ -131,7 +140,7 @@
                                                     if (isset($_POST['trangthai']) == "on") $trangthai = 0;
                                                     if (isset($_POST['trangthai']) == NULL) $trangthai = 1;
                                                     include_once('function.php');
-                                                    $con = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                                                    $con = admin_db_connect();
                                                     $result4 = mysqli_query($con, "SELECT `id_the_loai` FROM `sanpham` WHERE `id`=" . $_GET['id'] . "");
                                                     $r2 = mysqli_fetch_array($result4);
                                                     if (isset($_FILES['gallery']) && !empty($_FILES['gallery']['name'][0])) {
@@ -160,7 +169,7 @@
                                                             // Insert ảnh vào cơ sở dữ liệu
                                                         }
                                                     }
-                                                      $result1 = mysqli_query($con,"UPDATE `sanpham` SET `id`='" . $_POST['id'] . "',`ten_sp`='" . $_POST['name'] . "',`don_gia`=" . str_replace('.', '', $_POST['don_gia']) . ",`hinh_anh`='$image_url',`id_the_loai` = " . $_POST['idtl'] . ",`so_luong`='" . $_POST['so_luong'] . "', `ngay_sua` = " . time() . ",`trangthai`='. $trangthai . ',`gia_goc`=" . str_replace('.', '', $_POST['gia_goc']) . ",`NoiDungChiTiet`='" . $_POST['content'] . "' WHERE `sanpham`.`id` = " . $_GET['id']);
+                                                      $result1 = mysqli_query($con,"UPDATE `sanpham` SET `id`='" . $_POST['id'] . "',`ten_sp`='" . $_POST['name'] . "',`don_gia`=" . str_replace('.', '', $_POST['don_gia']) . ",`hinh_anh`='$image_url',`id_the_loai` = " . $_POST['idtl'] . ",`so_luong`='" . $_POST['so_luong'] . "', `ngay_sua` = NOW(),`trangthai`=" . $trangthai . ",`gia_goc`=" . str_replace('.', '', $_POST['gia_goc']) . ",`NoiDungChiTiet`='" . $_POST['content'] . "' WHERE `sanpham`.`id` = " . $_GET['id']);
                                                     if (!empty($galleryImages)) {
                                                         $product_id = ($_GET['act'] == 'sua' && !empty($_GET['id'])) ? $_GET['id'] : $con->insert_id;
                                                         $insertValues = "";
@@ -172,7 +181,6 @@
                                                             }
                                                         }
                                                         $result = mysqli_query($con, "INSERT INTO `hinhanhsp` ( `id_sp`, `hinh_anh`) VALUES " . $insertValues . ";");
-                                                        echo "cap nhat thanh cong";
                                                     }
                                                     if ($result1) {
                                                         // $result5 = mysqli_query($con,"SELECT COUNT(`id_the_loai`) AS cid_the_loai FROM `sanpham` WHERE `id_the_loai`=".$r2['id_the_loai']."");
@@ -215,7 +223,7 @@
             if ($_POST['name'] != '') {
                 if (isset($_POST['tong_sp']))
                 if ($_POST['tong_sp'] != '') {
-                $con = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                $con = admin_db_connect();
                 $result1 = mysqli_query($con, "UPDATE `theloai` SET `ten_tl` = '" . $_POST['name'] . "',`tong_sp` = '" . $_POST['tong_sp'] . "'WHERE `theloai`.`id` = " . $_GET['id'] . " ");
                 if ($result1)
                     header("location:./admin.php?act=suatltc&dk=yes");
@@ -277,7 +285,7 @@
                                         if (isset($_POST['email']))
                                             if ($_POST['email'] != '') {
                                                 if ($_POST['tendangnhap'] != '') $tendangnhap=null;
-                                                $conn = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                                                $conn = admin_db_connect();
                                                 $id = $_POST['id'];
                                                 $namei = $_POST['name'];
                                                  $chuc_vu = $_POST['chuc_vu'];
@@ -328,7 +336,7 @@
                                             if (isset($_POST['email']))
                                                 if ($_POST['email'] != '') {
                                                     if ($_POST['tendangnhap'] != '') $tendangnhap=null;
-                                                            $conn = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                                                            $conn = admin_db_connect();
                                                         
                                                             if ($_FILES['image']['name'] != NULL) {
                                                                 // Kiểm tra file up lên có phải là ảnh không
@@ -345,7 +353,7 @@
                                                                     // Insert ảnh vào cơ sở dữ liệu
                                                                 }
                                                             }
-                                                            $con = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                                                            $con = admin_db_connect();
                                                             $result1 = mysqli_query($con, "UPDATE `nhanvien` SET `id` = '" . $_POST['id'] . "', `ten_nv` = '" . $_POST['name'] . "',`hinh_anh`='$image_url', `mat_khau` = '" . $_POST['mat_khau'] . "', `email` = '" . $_POST['email'] . "', `phone` = '" . $_POST['phone'] . "', `ten_dangnhap` = '" . $_POST['tendangnhap'] . "', `chuc_vu` = '" . $_POST['chuc_vu'] . "' WHERE `nhanvien`.`id` = " . $_GET['id']);
                                                                                                        
                                                             if ($result1)
@@ -365,7 +373,6 @@
         if (isset($_POST['matkhaumoi']))
             if ($_POST['matkhaumoi'] != '') {
                 $result1 = mysqli_query($con, "UPDATE `taikhoang` SET `pass` = '" . $_POST['matkhaumoi'] . "' WHERE `username` = '" . $_GET['user'] . "'");
-                var_dump($result1);
                 if ($result1)
                     header("location:./admin.php?act=tkmktc&dk=yes");
                 else header("location:./admin.php?act=tkmktc&dk=no");
@@ -392,7 +399,6 @@
             if ($_POST['quyen'] != '') {
                 if (isset($_POST['trangthai']) == "on") $trangthai = 0;
                 if (isset($_POST['trangthai']) == NULL) $trangthai = 1;
-                var_dump(intval($_POST['quyen']));
                 // if ($_POST['quyen'] == '1' || $_POST['quyen'] == '2' || $_POST['quyen'] == '3' || $_POST['quyen'] == '4') {
                     $result1 = mysqli_query($con, "UPDATE `taikhoang` SET `id_quyen` = '" . $_POST['quyen'] . "', `trang_thai` = ' " . $trangthai . "' WHERE `username` = '" . $_GET['id'] . "'");
                     if ($result1)
@@ -405,7 +411,7 @@
         if ($_GET['act'] == 'xnhd') {
             if (isset($_GET['cuser']))
                 if ($_GET['cuser'] == '') {
-                    $conn = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                    $conn = admin_db_connect();
                     //$sql="SELECT `hoadon`.`id`, `id_khachhang`, `tong_tien`, `hoadon`.`ngay_tao`, `id_nhanvien`, `trangthai`, `ten_dangnhap`, `ten_nv`,`nhanvien`.`id` AS `idnv` FROM (`hoadon` LEFT JOIN `nhanvien` ON `nhanvien`.`id`=`id_nhanvien` ) WHERE `hoadon`.`id` = " . $_GET['id'] . "";
                     $taikhoan = mysqli_query($conn, "SELECT `id`, `ten_dangnhap` FROM `nhanvien` WHERE `id`='" . $_GET['iduser'] . "'");
                     // $hoadon=mysqli_query($conn,$sql);var_dump($hoadon);
@@ -485,7 +491,7 @@
         $id_quyen = mysqli_insert_id($con);
         foreach ($data['row'] as $insertid) {
             $inserts .= !empty($inserts) ? "," : "";
-            $inserts .= "(" . $id_quyen . "," . $insertid . ")";var_dump($data['row']);
+            $inserts .= "(" . $id_quyen . "," . $insertid . ")";
         }
         
         $inserted = mysqli_query($con, "INSERT INTO `quyendahmuc`(`id_quyen`, `id_danhmuc`) VALUES " . $inserts . "");
@@ -511,11 +517,10 @@
         $deleted=mysqli_query($con,"DELETE FROM `quyendahmuc` WHERE `id_quyen`=".$_GET['idq']."");
         foreach ($data['row'] as $insertid) {
             $inserts .= !empty($inserts) ? "," : "";
-            $inserts .= "(".$_GET['idq']."," . $insertid . ")";var_dump($inserts);
+            $inserts .= "(".$_GET['idq']."," . $insertid . ")";
         }
         
         $inserted = mysqli_query($con, "INSERT INTO `quyendahmuc`(`id_quyen`, `id_danhmuc`) VALUES " . $inserts . "");
-        var_dump($inserted);
         if($inserted) header("location:./admin.php?act=btndmsuatc&dk=yes");
         else header("location:./admin.php?act=btndmsuatc&dk=no");
         }else header("location:./admin.php?act=btndmsuatc&dk=no");
@@ -545,7 +550,7 @@
             if ($_POST['tendanhmucbv'] != '') {
                 if (isset($_POST['thutu']))
                 if ($_POST['thutu'] != '') {
-                $con = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                $con = admin_db_connect();
                 $result1 = mysqli_query($con, "UPDATE `danhmucbaiviet` SET `tendanhmucbv` = '" . $_POST['tendanhmucbv'] . "',`thutu` = '" . $_POST['thutu'] . "'WHERE `danhmucbaiviet`.`id_danhmucbv` = " . $_GET['id_danhmucbv'] . " ");
                 if ($result1)
                     header("location:./admin.php?act=suadmmtc&dk=yes");
@@ -637,7 +642,7 @@ if (isset($_POST['btnaddblog'])) {
         // Kiểm tra xem có file ảnh được chọn không
         if ($_FILES['image']['name'] != NULL) {
             // Xử lý tệp ảnh được gửi đi
-            $conn = mysqli_connect("localhost", "root", "", "GenZshopdb");
+            $conn = admin_db_connect();
             $tenbaiblog = $_POST['tenbaiblog'];
             $tomtat = $_POST['tomtat'];
             $noidungblog = $_POST['noidungblog'];
@@ -691,7 +696,7 @@ if (isset($_POST['btnsuablog'])) {
                                             if (isset($_POST['trangthai']) == "on") $trangthai = 0;
                                             if (isset($_POST['trangthai']) == NULL) $trangthai = 1;
                                             include_once('function.php');
-                                            $con = mysqli_connect("localhost", "root", "", "GenZshopdb");
+                                            $con = admin_db_connect();
                                             $result4 = mysqli_query($con, "SELECT `id_danhmucbv` FROM `baiblog` WHERE `id_baiblog`=" . $_GET['id_baiblog'] . "");
                                             $r2 = mysqli_fetch_array($result4);
                                             if (isset($_FILES['gallery']) && !empty($_FILES['gallery']['name'][0])) {

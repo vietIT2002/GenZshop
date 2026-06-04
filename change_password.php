@@ -1,8 +1,17 @@
-﻿<?php
+<?php
     date_default_timezone_set("Asia/Ho_Chi_Minh");
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     require_once('db/dbhelper.php');
     require_once('common/utility.php'); 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (!isset($_SESSION['ten_dangnhap'])) {
+        header('Location: index.php?act=login');
+        exit;
+    }
     if(isset($_SESSION['ten_dangnhap'])){
 		$ten_dangnhap=$_SESSION['ten_dangnhap'];
 		$sql='select * from khachhang where ten_dangnhap="'.$ten_dangnhap.'"';

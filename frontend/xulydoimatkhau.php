@@ -1,6 +1,8 @@
-﻿<?php
+<?php
     date_default_timezone_set("Asia/Ho_Chi_Minh");
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
     require_once('db/dbhelper.php');
     require_once('common/utility.php'); 
 

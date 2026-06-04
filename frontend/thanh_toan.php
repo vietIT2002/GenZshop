@@ -1,6 +1,7 @@
-
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
     include('../db/dbhelper.php');
     if(isset($_SESSION['ten_dangnhap'])){
         $ten_dangnhap=$_SESSION['ten_dangnhap'];
@@ -14,7 +15,7 @@ session_start();
         }
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $ngay_tao_HD=date('Y/m/d H:i:s');
-        $sql='insert into hoadon (id_khachhang, tong_tien, ngay_tao) value ("'.$infoCus['id'].'", "'.$tong_tien.'", "'.$ngay_tao_HD.'")';
+        $sql='insert into hoadon (id_khachhang, tong_tien, ngay_tao, trang_thai) value ("'.$infoCus['id'].'", "'.$tong_tien.'", "'.$ngay_tao_HD.'", 0)';
         execute($sql);
         $id_hoadon=executeSingleResult('SELECT id FROM hoadon ORDER BY ngay_tao DESC LIMIT 0, 1')['id'];
         foreach($cart as $key => $value){
@@ -29,10 +30,11 @@ session_start();
         //Cập nhật lại sô lượng sản phẩm theo thể loại
         $listCate=executeResult('SELECT * FROM theloai WHERE 1');
         foreach($listCate as $item){
-            $tongSPtheoTheLoai=executeSingleResult('SELECT SUM(so_luong) AS sl FROM sanpham WHERE id_the_loai='.$item['id'])['sl'];
+            $tongSPtheoTheLoai=executeSingleResult('SELECT COALESCE(SUM(so_luong), 0) AS sl FROM sanpham WHERE id_the_loai='.$item['id'])['sl'];
             execute('UPDATE theloai SET tong_sp="'.$tongSPtheoTheLoai.'" WHERE id='.$item['id']);
         }
         unset($_SESSION['cart']);
+        session_write_close();
        
     }
 ?>

@@ -446,3 +446,31 @@ iframe {
     font-size: 16px;
   }
 }
+
+/* GenZShop audit fixes: responsive product/footer stability */
+@media (max-width: 767px) {
+  .product {
+    min-height: 430px;
+  }
+
+  .product .product-img {
+    flex-basis: 190px;
+    height: 190px !important;
+  }
+
+  .product .product-body {
+    min-height: 155px;
+    height: auto;
+  }
+
+  .product .add-to-cart .add-to-cart-btn {
+    padding-right: 12px;
+    padding-left: 12px;
+    font-size: 12px;
+  }
+
+  .cart-product-img {
+    width: 56px;
+    height: 56px;
+  }
+}

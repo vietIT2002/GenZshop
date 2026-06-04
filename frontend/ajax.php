@@ -107,7 +107,7 @@ foreach($list as $item){
             <img src="./img/'.$item['hinh_anh'].'" alt="" style="height:100%">
             <div class="product-label">
                 
-                <span class="new">NEW</span>
+                '.(is_new_product($item['ngay_tao']) ? '<span class="new">NEW</span>' : '').'
             </div>
         </div>
         <div class="product-body">

@@ -1,5 +1,7 @@
 <?php
-     session_start();
+     if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
      require_once('../db/dbhelper.php');
      require_once('../common/utility.php');
      if(isset($_POST['id'])) {

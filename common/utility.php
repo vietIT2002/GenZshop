@@ -47,3 +47,20 @@ if (!function_exists('currency_format')) {
         }
     }
 }
+if (!function_exists('is_new_product')) {
+    function is_new_product($createdAt) {
+        if (empty($createdAt)) {
+            return false;
+        }
+
+        try {
+            $createdDate = new DateTime($createdAt);
+            $today = new DateTime('today');
+            $daysOld = (int) $today->diff($createdDate)->format('%r%a');
+
+            return $daysOld <= 0 && abs($daysOld) <= 30;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+}

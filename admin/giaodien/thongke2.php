@@ -6,6 +6,7 @@
 <?php
     function DocDB($host,$user,$password,$db){
         $con = mysqli_connect($host,$user,$password,$db);
+        mysqli_set_charset($con, 'utf8mb4');
         
         $strSQL= "SELECT * FROM hoadon";
         $result=mysqli_query($con,$strSQL);
@@ -14,6 +15,7 @@
     }
     function executeQuery($host,$user,$password,$db,$strSQL){
         $con = mysqli_connect($host,$user,$password,$db);
+        mysqli_set_charset($con, 'utf8mb4');
         $result=mysqli_query($con,$strSQL);
         mysqli_close($con);
         return $result;

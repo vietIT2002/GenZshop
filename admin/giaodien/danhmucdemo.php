@@ -2,6 +2,7 @@
     include_once("./connect_db.php");
     if (!empty($_SESSION['nguoidung'])) {
         $con = mysqli_connect($host, $user, $password, $database);
+        mysqli_set_charset($con, 'utf8mb4');
         $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 10;
         $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
         $offset = ($current_page - 1) * $item_per_page;

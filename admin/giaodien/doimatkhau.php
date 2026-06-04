@@ -29,6 +29,7 @@
 <body>
 <?php
     $con = mysqli_connect("localhost", "root", "", "GenZshopdb");
+        mysqli_set_charset($con, 'utf8mb4');
     $result = mysqli_query($con, "SELECT * FROM `taikhoang` WHERE `username` = '" . $_SESSION['user']."'");
     $taikhoang = $result->fetch_assoc();
 ?>
