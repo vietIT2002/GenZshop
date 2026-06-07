@@ -93,68 +93,34 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$title?></title>
-        <!-- link css -->
-        <link rel="stylesheet" href="./css/Blog.css">
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-
-    <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
-
-    <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
-
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- jQuery library -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="js/jquery1.min.js"></script>
-    <!-- Popper JS  -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-    <script type="text/javascript" src="js/popper.min.js"></script> 
-
+<?php
+    $pageTitle = $title;
+    $extraStyles = ['css/Blog.css'];
+    $extraHeadContent = <<<'HTML'
     <style>
       .vertical-menu {
-          width: 200px; 
+          width: 200px;
       }
 
       .vertical-menu a {
-          background-color: #eee; 
-          color: black; 
-          display: block; 
-          padding: 12px; 
-          text-decoration: none; 
+          background-color: #eee;
+          color: black;
+          display: block;
+          padding: 12px;
+          text-decoration: none;
       }
 
       .vertical-menu a:hover {
-          background-color: #ccc; 
+          background-color: #ccc;
       }
 
-        .vertical-menu a.active {
-            color: #8B8682;
-        }
-    </style>  
-</head>
+      .vertical-menu a.active {
+          color: #8B8682;
+      }
+    </style>
+HTML;
+    require_once('includes/head.php');
+?>
 <body>
 
 <div id="wapper">
@@ -232,23 +198,6 @@
                 <?php require_once('frontend/footer.php'); ?>
                 </div>
         </div>
-
-        <!-- jQuery Plugins -->
-        
-       
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-
-		<script type="text/javascript" src="js/slick.min.js"></script>
-		<script type="text/javascript" src="js/nouislider.min.js"></script>
-
-
-		 <script type="text/javascript" src="js/jquery.zoom.min.js"></script>
-		<script type="text/javascript" src="js/main.js"></script> 
-        <script>
-            
-      
-                    
+        <?php require_once('includes/scripts.php'); ?>
 </body>
 </html>

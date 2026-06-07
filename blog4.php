@@ -71,40 +71,11 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$title?></title>
-    <!-- link css -->
-    <link rel="stylesheet" href="./css/Blog.css">
-
-
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-
-    <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
-
-    <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
-
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-
-    <script type="text/javascript" src="js/jquery1.min.js"></script>
-    <!-- Popper JS  -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-    <script type="text/javascript" src="js/popper.min.js"></script> 
-</head>
+<?php
+    $pageTitle = $title;
+    $extraStyles = ['css/Blog.css'];
+    require_once('includes/head.php');
+?>
 <body>
 
   <div id="wapper">
@@ -219,29 +190,8 @@
                 <div id="footer">
                     <?php require_once('frontend/footer.php'); ?>
                 </div>
-    </div> 
-             
-        
-
-        <!-- jQuery Plugins -->
-        
-       
-          <script type="text/javascript" src="js/jquery.min.js"></script>
-          <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-
-          <script type="text/javascript" src="js/slick.min.js"></script>
-          <script type="text/javascript" src="js/nouislider.min.js"></script>
-
-
-          <script type="text/javascript" src="js/jquery.zoom.min.js"></script>
-          <script type="text/javascript" src="js/main.js"></script> 
-              <script>
-            
-      
-     
-   
-    
+    </div>
+        <?php require_once('includes/scripts.php'); ?>
 </body>
 
 </html>
