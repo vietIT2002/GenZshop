@@ -14,6 +14,7 @@ $extraHeadContent = $extraHeadContent ?? '';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 
     <?php foreach ($preloadAssets as $asset): ?>
         <?php if (is_array($asset)): ?>
@@ -28,7 +29,11 @@ $extraHeadContent = $extraHeadContent ?? '';
     <link type="text/css" rel="stylesheet" href="css/slick-theme.css">
     <link type="text/css" rel="stylesheet" href="css/nouislider.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/header12.css?v=20260607-7">
+    <link type="text/css" rel="stylesheet" href="css/responsive.css?v=20260607-4">
+    <link type="text/css" rel="stylesheet" href="css/genzshop-ui.css?v=20260607-1">
 
     <?php foreach ($extraStyles as $stylePath): ?>
         <link rel="stylesheet" href="<?= htmlspecialchars($stylePath, ENT_QUOTES, 'UTF-8') ?>">
