@@ -143,12 +143,7 @@ if($countResult!=null){
 $numberPage=ceil($count/$limit);
 }
 
-echo '<div class="store-filter clearfix" style="
-position: absolute;
-right: 0;
-bottom: -50px;
-left:0;
-">';
+echo '<div class="store-filter store-pagination-wrap clearfix">';
 if($numberPage>1){ 
     echo '<ul class="store-pagination">';
         

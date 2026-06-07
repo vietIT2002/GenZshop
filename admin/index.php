@@ -194,6 +194,222 @@ unset($_SESSION['cart']);
                 padding: 32px 20px;
             }
         }
+
+        /* GenZShop admin login polish */
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100dvh;
+            margin: 0;
+            padding: 32px;
+            background: #f5f7fb;
+            color: #111827;
+            font-family: "Poppins", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            width: auto;
+            height: auto;
+            background: #f5f7fb;
+        }
+
+        .homeee {
+            position: relative;
+            top: auto;
+            left: auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+            align-items: center;
+            width: min(100%, 1080px);
+            height: auto;
+            min-height: 620px;
+            margin: 0;
+            overflow: hidden;
+            transform: none;
+            border: 1px solid #e5e7eb !important;
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 28px 80px rgba(17, 24, 39, 0.14);
+        }
+
+        .contentt {
+            width: 100%;
+            margin: 0;
+            padding: 56px;
+        }
+
+        .contentt img {
+            display: block;
+            width: 100%;
+            max-height: 420px;
+            object-fit: contain;
+        }
+
+        .loginnn {
+            width: 100%;
+            padding: 48px 56px;
+        }
+
+        .loginnn form {
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .loginnn h2 {
+            margin: 0 0 34px;
+            color: #111827;
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+        .loginnn .inputt {
+            position: relative;
+            height: auto;
+            margin-bottom: 22px;
+        }
+
+        .loginnn .inputt .input11 {
+            display: block;
+            width: 100%;
+            height: 48px;
+            padding: 0 42px 0 14px;
+            border: 1px solid #d9dee8;
+            border-radius: 9px;
+            background: #ffffff;
+            color: #111827;
+            font-size: 15px;
+        }
+
+        .loginnn .inputt .input11:focus {
+            border-color: #d90429;
+            box-shadow: 0 0 0 4px rgba(217, 4, 41, 0.10);
+        }
+
+        .loginnn .inputt i {
+            position: absolute;
+            right: 14px;
+            bottom: auto;
+            top: 50%;
+            color: #6b7280;
+            transform: translateY(-50%);
+        }
+
+        .loginnn .buttonnn {
+            height: auto;
+            margin: 8px 0 14px;
+        }
+
+        .loginnn button,
+        .loginnn .login-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 46px;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .loginnn button {
+            background: #d90429;
+        }
+
+        .loginnn button:hover {
+            background: #b80022;
+        }
+
+        .loginnn .login-link {
+            background: #eef2f7;
+            color: #111827;
+        }
+
+        .loginnn .login-link:hover {
+            background: #e2e8f0;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                display: block;
+                padding: 20px;
+            }
+
+            .homeee {
+                width: 100%;
+                min-height: 0;
+                grid-template-columns: 1fr;
+                margin: 0 auto;
+            }
+
+            .contentt {
+                padding: 26px 22px 0;
+            }
+
+            .contentt img {
+                max-height: 220px;
+            }
+
+            .loginnn {
+                padding: 26px 22px 30px;
+            }
+
+            .loginnn h2 {
+                margin-bottom: 24px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 14px;
+            }
+
+            .homeee {
+                width: calc(100vw - 28px);
+                max-width: calc(100vw - 28px);
+            }
+
+            .contentt {
+                display: none;
+            }
+
+            .loginnn {
+                width: 100%;
+                max-width: 100%;
+                padding: 28px 20px;
+            }
+
+            .loginnn form,
+            .loginnn .inputt,
+            .loginnn .buttonnn,
+            .loginnn .inputt .input11,
+            .loginnn button,
+            .loginnn .login-link {
+                max-width: 100%;
+            }
+
+            .loginnn h2 {
+                font-size: 26px;
+            }
+        }
     </style>
 </head>
 

@@ -1,4 +1,3 @@
-
 <?php
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     session_start();
@@ -215,7 +214,9 @@
                   </div>
                 </div>
               </section>
-
+                <div id="footer">
+                    <?php require_once('frontend/footer.php'); ?>
+                </div>
     </div> 
              
         

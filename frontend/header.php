@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-<link type="text/css" rel="stylesheet" href="css/header12.css?v=20260602-2"/>
-<link type="text/css" rel="stylesheet" href="css/responsive.css?v=20260602-9"/>
+<link type="text/css" rel="stylesheet" href="css/header12.css?v=20260607-4"/>
+<link type="text/css" rel="stylesheet" href="css/responsive.css?v=20260607-4"/>
 <style>
 </style>
 <!-- TOP HEADER -->
@@ -49,7 +49,7 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form method="get" >
+								<form method="get" class="search-form">
 									<select class="input-select" onchange="location = this.value;">
 										<option value="0">Danh Mục Sản Phẩm</option>
 										<?php
@@ -60,6 +60,14 @@
 										}
 										?>
 									</select>
+									<div class="search-suggestions" aria-label="Gợi ý tìm kiếm">
+										<span class="search-suggestions-title">Gợi ý nhanh</span>
+										<?php
+											foreach(array_slice($list, 0, 5) as $suggestion){
+												echo '<a href="?act=category&id='.$suggestion['id'].'">'.$suggestion['ten_tl'].'</a>';
+											}
+										?>
+									</div>
 									<input class="input" name="search" placeholder="Tìm sản phẩm..." required oninvalid="this.setCustomValidity('Vui lòng nhập thông tin')" oninput="setCustomValidity('')"/>
 									<button class="search-btn" type="submit" aria-label="Tìm kiếm">
 										<i class="fa-solid fa-magnifying-glass" style="color: #333;"></i>
