@@ -189,23 +189,23 @@ The architecture separates business logic, data management, and AI services, mak
 
 ### Homepage
 
-*Add screenshot here*
+![GenZShop homepage](readme-screenshots/home-desktop-after-products.png)
 
 ### Product Management
 
-*Add screenshot here*
+![Product management](readme-screenshots/category-desktop-after-products.png)
 
 ### Shopping Cart
 
-*Add screenshot here*
+![Shopping cart](readme-screenshots/shopping-cart.png)
 
 ### AI Chatbot Assistant
 
-*Add screenshot here*
+![AI chatbot assistant](readme-screenshots/chatbot-assistant.png)
 
 ### Admin Dashboard
 
-*Add screenshot here*
+![Admin dashboard](readme-screenshots/admin-dashboard.png)
 
 ---
 
@@ -235,3 +235,5 @@ Information Technology Graduate
 ## 📄 License
 
 This project is developed for educational, research, and portfolio purposes.
+
+All images and product information are used only for educational demonstration and demo purposes. They are not intended for commercialization, sale, or commercial promotion.
