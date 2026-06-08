@@ -393,7 +393,7 @@
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
-											<p class="chufont"><?=$detailproduct['NoiDungChiTiet']?></p>
+											<div class="chufont"><?=$detailproduct['NoiDungChiTiet']?></div>
 										</div>
 									</div>
 								</div>

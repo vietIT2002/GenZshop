@@ -137,12 +137,11 @@
                                             if ($_POST['idtl'] != '') {
                                                 if (isset($_POST['content']))
                                                     if ($_POST['content'] != '') {
-                                                    if (isset($_POST['trangthai']) == "on") $trangthai = 0;
-                                                    if (isset($_POST['trangthai']) == NULL) $trangthai = 1;
                                                     include_once('function.php');
                                                     $con = admin_db_connect();
-                                                    $result4 = mysqli_query($con, "SELECT `id_the_loai` FROM `sanpham` WHERE `id`=" . $_GET['id'] . "");
+                                                    $result4 = mysqli_query($con, "SELECT `id_the_loai`, `trangthai` FROM `sanpham` WHERE `id`=" . $_GET['id'] . "");
                                                     $r2 = mysqli_fetch_array($result4);
+                                                    $trangthai = isset($_POST['trangthai']) ? (($_POST['trangthai'] === 'on' || $_POST['trangthai'] === '0' || $_POST['trangthai'] === 0) ? 0 : 1) : (int)$r2['trangthai'];
                                                     if (isset($_FILES['gallery']) && !empty($_FILES['gallery']['name'][0])) {
                                                         $uploadedFiles = $_FILES['gallery'];
                                                         $result = uploadFiles($uploadedFiles);

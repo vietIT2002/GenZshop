@@ -202,10 +202,7 @@ $theloai = mysqli_query($con, "SELECT * FROM `theloai`");
 
 </html>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+<script src="giaodien/ckeditor-admin.js"></script>
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#product-content' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+    createGenzshopEditor('#product-content');
 </script>

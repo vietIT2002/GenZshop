@@ -189,7 +189,7 @@ $theloai = mysqli_query($con, "SELECT * FROM `theloai`");
                     <div class="wrap-field form-group">
                         <label class="col-sm-2 col-form-label">Nội dung: </label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="content" id="product-content" rows="5"<?= (!empty($product) ? $product['NoiDungChiTiet'] : "") ?>></textarea>
+                        <textarea class="form-control" name="content" id="product-content" rows="5"><?= htmlspecialchars((!empty($product) ? $product['NoiDungChiTiet'] : ''), ENT_QUOTES, 'UTF-8') ?></textarea>
                         </div>
                     </div>
             </div>
@@ -240,11 +240,8 @@ $theloai = mysqli_query($con, "SELECT * FROM `theloai`");
 </body>
 </html>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+<script src="giaodien/ckeditor-admin.js"></script>
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#product-content' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+    createGenzshopEditor('#product-content');
 </script>
 

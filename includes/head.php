@@ -33,7 +33,7 @@ $extraHeadContent = $extraHeadContent ?? '';
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="css/header12.css?v=20260607-7">
     <link type="text/css" rel="stylesheet" href="css/responsive.css?v=20260607-4">
-    <link type="text/css" rel="stylesheet" href="css/genzshop-ui.css?v=20260607-1">
+    <link type="text/css" rel="stylesheet" href="css/genzshop-ui.css?v=20260608-editor">
 
     <?php foreach ($extraStyles as $stylePath): ?>
         <link rel="stylesheet" href="<?= htmlspecialchars($stylePath, ENT_QUOTES, 'UTF-8') ?>">

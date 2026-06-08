@@ -160,27 +160,11 @@ $danhmucbaiviet = mysqli_query($con, "SELECT * FROM `danhmucbaiviet`");
         </script>
 
         <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-        <script src="ckeditor/ckeditor.js"> </script>
-        <script>
-            ClassicEditor
-                .create( document.querySelector( '#noidungblog'),{
-                    simpleUpload:
-                    {
-                        // uploadUrl: 'fileupload.php'
-                    }
-                } )
-                .then(editor =>{
-                    window.editor = editor;
-                })
-                .catch( error => {
-                    console.error( error.stack );
-                } );
-            ClassicEditor
-                .create( document.querySelector( '#tomtat' ) )
-                .catch( error => {
-                    console.error( error );
-                } );
-        </script>
+<script src="giaodien/ckeditor-admin.js"></script>
+<script>
+    createGenzshopEditor('#noidungblog');
+    createGenzshopEditor('#tomtat');
+</script>
 </body>
 
 </html>

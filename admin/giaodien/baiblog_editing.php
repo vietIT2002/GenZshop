@@ -121,7 +121,7 @@ $theloai = mysqli_query($con, "SELECT * FROM `danhmucbaiviet`");
                     <div class="wrap-field form-group">
                     <label class="col-sm-2 col-form-label">Tóm tắt bài blog: </label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="tomtat" id="tomtat" rows="4"<?= (!empty( $baiblog) ?  $baiblog['tomtat'] : "") ?>></textarea>
+                        <textarea class="form-control" name="tomtat" id="tomtat" rows="4"><?= htmlspecialchars((!empty($baiblog) ? $baiblog['tomtat'] : ''), ENT_QUOTES, 'UTF-8') ?></textarea>
                         </div>
                     </div>
             </div>
@@ -129,7 +129,7 @@ $theloai = mysqli_query($con, "SELECT * FROM `danhmucbaiviet`");
                     <div class="wrap-field form-group">
                         <label class="col-sm-2 col-form-label">Nội dung bài blog: </label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="noidungblog" id="noidungblog" rows="10"<?= (!empty( $baiblog) ?  $baiblog['noidungblog'] : "") ?>></textarea>
+                        <textarea class="form-control" name="noidungblog" id="noidungblog" rows="10"><?= htmlspecialchars((!empty($baiblog) ? $baiblog['noidungblog'] : ''), ENT_QUOTES, 'UTF-8') ?></textarea>
                         </div>
                     </div>
             </div>
@@ -181,24 +181,8 @@ $theloai = mysqli_query($con, "SELECT * FROM `danhmucbaiviet`");
 </body>
 </html>
 <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-        <script src="ckeditor/ckeditor.js"> </script>
-        <script>
-            ClassicEditor
-                .create( document.querySelector( '#noidungblog'),{
-                    simpleUpload:
-                    {
-                        // uploadUrl: 'fileupload.php'
-                    }
-                } )
-                .then(editor =>{
-                    window.editor = editor;
-                })
-                .catch( error => {
-                    console.error( error.stack );
-                } );
-            ClassicEditor
-                .create( document.querySelector( '#tomtat' ) )
-                .catch( error => {
-                    console.error( error );
-                } );
-        </script>
+<script src="giaodien/ckeditor-admin.js"></script>
+<script>
+    createGenzshopEditor('#noidungblog');
+    createGenzshopEditor('#tomtat');
+</script>
